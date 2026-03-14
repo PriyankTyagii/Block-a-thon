@@ -1,0 +1,149 @@
+/* ── Citizen portal page ─────────────────────────── */
+.citizen-wrap {
+  max-width: 1180px; margin: 0 auto; padding: 28px 20px;
+}
+.citizen-wrap h2 { font-size: 22px; font-weight: 700; color: #0d4f45; margin-bottom: 4px; }
+.citizen-wrap .page-sub { font-size: 13.5px; color: #555; margin-bottom: 24px; }
+
+.ai-banner {
+  background: linear-gradient(135deg, #0d4f45 0%, #1a7a6e 100%);
+  color: #fff; border-radius: 10px; padding: 14px 20px;
+  display: flex; align-items: center; gap: 16px; margin-bottom: 24px;
+  box-shadow: 0 2px 12px rgba(26,122,110,0.25);
+}
+.ai-banner .ai-icon { font-size: 28px; }
+.ai-banner strong { font-size: 15px; display: block; }
+.ai-banner span { font-size: 13px; opacity: 0.85; }
+.ai-stats { margin-left: auto; display: flex; gap: 20px; text-align: center; flex-shrink: 0; }
+.ai-stats div strong { font-size: 18px; display: block; }
+.ai-stats div span { font-size: 11px; opacity: 0.8; }
+.ai-stats div { border-left: 1px solid rgba(255,255,255,0.25); padding-left: 20px; }
+
+/* Two column layout */
+.citizen-layout { display: grid; grid-template-columns: 380px 1fr; gap: 24px; align-items: start; }
+
+/* Application form */
+.app-form-card {
+  background: #fff; border-radius: 10px;
+  border: 1px solid #e5e7eb; padding: 22px;
+  box-shadow: var(--shadow);
+}
+.app-form-card h3 {
+  font-size: 15px; font-weight: 700; color: #0d4f45;
+  border-bottom: 2px solid var(--teal-light);
+  padding-bottom: 10px; margin-bottom: 18px;
+  display: flex; align-items: center; gap: 8px;
+}
+.form-field { margin-bottom: 14px; }
+.form-field label { display: block; font-size: 12px; font-weight: 600; color: #374151; margin-bottom: 4px; }
+.form-field input,
+.form-field select {
+  width: 100%; padding: 9px 12px; border: 1px solid #d0d5dd;
+  border-radius: var(--radius); font-size: 13.5px; color: #1a1a1a;
+  outline: none; background: #fafafa; transition: border-color 0.15s;
+}
+.form-field input:focus,
+.form-field select:focus { border-color: var(--teal); background: #fff; box-shadow: 0 0 0 3px rgba(26,122,110,0.08); }
+.form-field input::placeholder { color: #aab; }
+
+.app-id-badge {
+  background: var(--teal-light); border: 1px solid #a8d5ce;
+  border-radius: 6px; padding: 8px 12px; margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px; font-size: 13px;
+}
+.app-id-badge strong { color: var(--teal); }
+.app-id-badge span { color: #555; font-size: 12px; }
+
+.service-info {
+  background: #fff8ee; border: 1px solid #fde68a; border-radius: 6px;
+  padding: 10px 12px; font-size: 12px; color: #92400e; margin-bottom: 14px;
+}
+
+/* Upload area */
+.upload-card-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+.upload-card {
+  background: #fff; border: 2px dashed #b8d5d0; border-radius: 10px;
+  padding: 20px 14px; text-align: center; cursor: pointer;
+  transition: border-color 0.2s, background 0.2s; position: relative;
+  min-height: 200px; display: flex; flex-direction: column;
+  align-items: center; justify-content: flex-start; gap: 8px;
+}
+.upload-card:hover { border-color: var(--teal); background: #f0faf8; }
+.upload-card.uploading { border-color: var(--amber); border-style: solid; }
+.upload-card.done { border-color: #10b981; border-style: solid; background: #f0fdf4; }
+.upload-card.error { border-color: #ef4444; border-style: solid; background: #fef2f2; }
+
+.upload-card .doc-type {
+  font-size: 12.5px; font-weight: 700; color: #374151;
+  margin-bottom: 4px; text-align: center;
+}
+.upload-card .doc-required {
+  font-size: 10px; color: #ef4444; font-weight: 600;
+}
+.upload-card .upload-icon { font-size: 32px; margin: 8px 0; }
+.upload-card .upload-hint { font-size: 11px; color: #888; line-height: 1.5; }
+.upload-card input[type=file] { display: none; }
+
+/* Upload progress states */
+.upload-status {
+  width: 100%; text-align: left; font-size: 11.5px; margin-top: 8px;
+}
+.progress-bar-wrap {
+  height: 5px; background: #e5e7eb; border-radius: 4px; overflow: hidden; margin: 6px 0;
+}
+.progress-bar {
+  height: 100%; background: var(--teal); border-radius: 4px;
+  width: 0%; transition: width 0.3s ease;
+}
+.upload-step { color: #555; font-size: 11px; line-height: 1.6; }
+.upload-step.active { color: var(--teal); font-weight: 600; }
+.field-pop { animation: pop-in 0.25s ease forwards; opacity: 0; }
+@keyframes pop-in {
+  from { opacity: 0; transform: translateX(-6px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.size-counter { font-weight: 700; color: var(--amber); font-size: 12px; }
+.verified-badge {
+  background: #10b981; color: #fff; border-radius: 20px;
+  padding: 4px 12px; font-size: 11.5px; font-weight: 700;
+  margin-top: 8px; display: inline-block;
+}
+.conf-row { font-size: 11px; color: #555; margin-top: 4px; }
+
+/* Submit bar */
+.submit-bar {
+  background: #fff; border-radius: 10px; border: 1px solid #e5e7eb;
+  padding: 16px 20px; display: flex; align-items: center;
+  justify-content: space-between; box-shadow: var(--shadow);
+}
+.submit-note { font-size: 13px; color: #555; }
+.submit-note strong { color: #0d4f45; }
+.btn-submit {
+  padding: 11px 28px; background: #d0d5dd; color: #888;
+  border: none; border-radius: var(--radius); font-size: 14px;
+  font-weight: 700; cursor: not-allowed; transition: all 0.3s;
+}
+.btn-submit.ready {
+  background: var(--teal); color: #fff; cursor: pointer;
+  animation: glow-btn 2s ease-in-out infinite;
+}
+@keyframes glow-btn {
+  0%,100% { box-shadow: 0 0 0 0 rgba(26,122,110,0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(26,122,110,0); }
+}
+
+.upload-section-head {
+  background: #fff; border-radius: 10px; border: 1px solid #e5e7eb;
+  padding: 18px 20px; margin-bottom: 16px; box-shadow: var(--shadow);
+}
+.upload-section-head h3 { font-size: 15px; font-weight: 700; color: #0d4f45; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+.upload-section-head p { font-size: 13px; color: #666; }
+
+@media (max-width: 1000px) {
+  .citizen-layout { grid-template-columns: 1fr; }
+  .upload-card-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .upload-card-grid { grid-template-columns: 1fr; }
+  .ai-stats { display: none; }
+}

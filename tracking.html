@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Track Application — Apuni Sarkar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/toasts.css">
+<style>
+.track-wrap {
+  max-width: 860px; margin: 0 auto; padding: 32px 20px;
+}
+.track-hero {
+  text-align: center; margin-bottom: 32px;
+}
+.track-hero h2 {
+  font-size: 26px; font-weight: 800; color: #0d4f45; margin-bottom: 6px;
+}
+.track-hero p { font-size: 14px; color: #666; }
+
+.search-card {
+  background: #fff; border-radius: 12px; border: 1px solid #e5e7eb;
+  padding: 28px 32px; box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  margin-bottom: 28px;
+}
+.search-tabs {
+  display: flex; gap: 0; margin-bottom: 22px;
+  border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;
+}
+.search-tab {
+  flex: 1; padding: 10px; border: none; background: #f9fafb;
+  font-size: 13px; font-weight: 600; cursor: pointer; color: #666;
+  transition: all 0.15s;
+}
+.search-tab.active { background: #0d4f45; color: #fff; }
+.search-panel { display: none; }
+.search-panel.active { display: flex; gap: 10px; align-items: flex-end; }
+.search-panel .form-field { flex: 1; margin: 0; }
+.search-panel label { display: block; font-size: 12px; font-weight: 600; color: #374151; margin-bottom: 5px; }
+.search-panel input {
+  width: 100%; padding: 10px 14px; border: 1px solid #d0d5dd;
+  border-radius: 6px; font-size: 14px; outline: none;
+  transition: border-color 0.15s;
+}
+.search-panel input:focus { border-color: #0d4f45; box-shadow: 0 0 0 3px rgba(13,79,69,0.08); }
+.btn-track {
+  padding: 11px 24px; background: #0d4f45; color: #fff;
+  border: none; border-radius: 6px; font-size: 14px; font-weight: 700;
+  cursor: pointer; white-space: nowrap; flex-shrink: 0;
+  transition: background 0.15s;
+}
+.btn-track:hover { background: #155f55; }
+
+/* Result area */
+.result-area { display: none; }
+.result-area.visible { display: block; animation: fade-up 0.3s ease; }
+@keyframes fade-up { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform: translateY(0); } }
+
+.app-result-card {
+  background: #fff; border-radius: 12px; border: 1px solid #e5e7eb;
+  overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+}
+.result-header {
+  background: linear-gradient(135deg, #0d4f45, #1a7a6e);
+  color: #fff; padding: 20px 24px;
+  display: flex; justify-content: space-between; align-items: flex-start;
+  flex-wrap: wrap; gap: 12px;
+}
+.result-header h3 { font-size: 20px; font-weight: 800; margin-bottom: 2px; }
+.result-header .app-id-tag {
+  font-size: 12px; opacity: 0.8; font-family: monospace; letter-spacing: 0.5px;
+}
+.status-badge-lg {
+  padding: 6px 16px; border-radius: 20px;
+  font-size: 13px; font-weight: 700;
+  background: rgba(255,255,255,0.2);
+  color: #fff; border: 1.5px solid rgba(255,255,255,0.4);
+}
+
+.result-body { padding: 24px; }
+.result-meta {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  margin-bottom: 24px;
+}
+.meta-item .mi-label { font-size: 11px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+.meta-item .mi-val   { font-size: 14px; font-weight: 600; color: #1a1a1a; }
+
+.section-title { font-size: 13px; font-weight: 700; color: #0d4f45; margin-bottom: 14px; display: flex; align-items: center; gap: 6px; }
+
+/* Blockchain proof box */
+.blockchain-proof {
+  background: #1e1b4b; border-radius: 10px;
+  padding: 16px 20px; margin-top: 20px;
+  border: 1px solid #312e81;
+}
+.blockchain-proof .bp-title {
+  color: #a5b4fc; font-size: 12px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px;
+  display: flex; align-items: center; gap: 6px;
+}
+.bp-row {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 8px; font-size: 12px;
+}
+.bp-row:last-child { margin-bottom: 0; }
+.bp-key { color: #94a3b8; }
+.bp-val { color: #e0e7ff; font-family: monospace; font-size: 11px; }
+.bp-val.green { color: #4ade80; }
+.bp-val.purple { color: #a78bfa; }
+
+/* Not found state */
+.not-found {
+  text-align: center; padding: 40px 20px;
+  color: #888; font-size: 14px;
+}
+.not-found .nf-icon { font-size: 48px; margin-bottom: 12px; }
+.not-found strong { display: block; color: #333; font-size: 16px; margin-bottom: 6px; }
+
+/* Recent applications from DB */
+.recent-list { display: flex; flex-direction: column; gap: 10px; }
+.recent-item {
+  background: #fff; border-radius: 8px; border: 1px solid #e5e7eb;
+  padding: 14px 16px; display: flex; align-items: center;
+  justify-content: space-between; cursor: pointer;
+  transition: background 0.12s;
+}
+.recent-item:hover { background: #f0faf8; border-color: #a8d5ce; }
+.ri-left h4 { font-size: 13.5px; font-weight: 700; color: #111; margin-bottom: 2px; }
+.ri-left span { font-size: 11.5px; color: #888; }
+.ri-right { text-align: right; }
+.ri-id { font-size: 11.5px; font-family: monospace; color: #0d4f45; font-weight: 600; }
+
+@media (max-width: 600px) {
+  .result-meta { grid-template-columns: 1fr 1fr; }
+  .search-card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+
+<div class="access-bar">
+  <div><a href="index.html">← Home</a><a href="#">Sitemap</a></div>
+  <div class="access-right">
+    <div class="lang-toggle"><span>English</span><div class="toggle-switch"></div><span>हिंदी</span></div>
+    <div class="font-btns"><button>A-</button><button class="active">A</button><button>A+</button></div>
+    <span class="access-icon">♿</span>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="logo-group">
+    <svg class="ashoka-emblem" viewBox="0 0 56 56"><circle cx="28" cy="28" r="27" fill="#f5f0e8" stroke="#c9a84c" stroke-width="1"/><circle cx="28" cy="28" r="20" fill="none" stroke="#1a7a6e" stroke-width="0.8" stroke-dasharray="2 1.5"/><text x="28" y="33" font-size="22" text-anchor="middle" fill="#8b4513">🏛</text></svg>
+    <div class="logo-divider"></div>
+    <div class="eservices-logo">
+      <div class="brand-top"><div class="diamond"></div><span class="e-text">e-Services</span></div>
+      <span class="sub-text">Apuni Sarkar</span>
+    </div>
+  </div>
+  <div class="header-right" style="font-size:12px;color:#555;">
+    <span style="background:#e6f4f1;padding:5px 12px;border-radius:4px;color:#0d4f45;font-weight:600;">🔗 Blockchain Verified</span>
+  </div>
+</header>
+
+<nav class="main-nav">
+  <ul>
+    <li><a href="index.html"><span class="nav-icon">🏠</span> Home</a></li>
+    <li><a href="citizen.html"><span class="nav-icon">📄</span> Apply</a></li>
+    <li><a href="tracking.html" class="active"><span class="nav-icon">📍</span> Track Application</a></li>
+    <li><a href="officer.html"><span class="nav-icon">⚙</span> Officer Dashboard</a></li>
+    <li><a href="analytics.html"><span class="nav-icon">📊</span> Analytics</a></li>
+  </ul>
+</nav>
+
+<div class="page-body">
+<div class="track-wrap">
+
+  <div class="track-hero">
+    <h2>📍 Track Your Application</h2>
+    <p>Enter your Application ID or registered mobile number to check real-time status.</p>
+  </div>
+
+  <div class="search-card">
+    <div class="search-tabs">
+      <button class="search-tab active" data-stab="appid">By Application ID</button>
+      <button class="search-tab" data-stab="mobile">By Mobile Number</button>
+    </div>
+
+    <div class="search-panel active" id="stab-appid">
+      <div class="form-field">
+        <label>Application ID</label>
+        <input type="text" id="input-appid" placeholder="e.g. UTK-2024-18834" spellcheck="false">
+      </div>
+      <button class="btn-track" id="btn-search-id">Track →</button>
+    </div>
+
+    <div class="search-panel" id="stab-mobile">
+      <div class="form-field">
+        <label>Registered Mobile Number</label>
+        <input type="tel" id="input-mobile" placeholder="10-digit mobile number">
+      </div>
+      <button class="btn-track" id="btn-search-mobile">Track →</button>
+    </div>
+  </div>
+
+  <!-- Result -->
+  <div class="result-area" id="result-area">
+    <div id="result-content"></div>
+  </div>
+
+  <!-- Recent from local DB -->
+  <div id="recent-section">
+    <div class="section-title" style="margin-bottom:12px;">🕓 Recent Applications (stored locally)</div>
+    <div class="recent-list" id="recent-list"></div>
+    <div id="no-recent" style="display:none;font-size:13px;color:#888;padding:12px 0;">
+      No applications found. <a href="citizen.html" style="color:var(--teal);">Submit one →</a>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<footer class="site-footer">
+  <div>© 2024 Government of Uttarakhand &nbsp;|&nbsp; NIC &nbsp;|&nbsp; Version 2.4.1</div>
+  <div class="footer-links"><a href="index.html">Home</a><a href="citizen.html">Apply</a></div>
+  <div class="nic-badge">🔒 NIC + Blockchain Secured</div>
+</footer>
+
+<div class="pi-badge">
+  <span class="pi-dot"></span><strong>Raspberry Pi Kiosk</strong> — Connected
+  <span class="pi-sub">RPi 4B | AES-256 + IPFS | 192.168.1.42</span>
+</div>
+<div class="demo-watermark">DEMO &nbsp; DEMO &nbsp; DEMO &nbsp; DEMO</div>
+<div id="toast-container"></div>
+
+<script src="js/main.js"></script>
+<script src="js/db.js"></script>
+<script src="js/notifications.js"></script>
+<script>
+const STATUS_LABELS = {
+  submitted:  'Application Submitted',
+  processing: 'AI Processing',
+  verified:   'Documents Verified',
+  approved:   'Approved',
+  flagged:    'Flagged — Review Needed',
+  rejected:   'Rejected',
+  dispatched: 'Certificate Dispatched'
+};
+
+const STATUS_COLORS = {
+  approved: '#10b981', flagged: '#ef4444',
+  verified: '#1a7a6e', processing: '#f59e0b',
+  submitted: '#6b7280', rejected: '#ef4444', dispatched: '#3b82f6'
+};
+
+function dotClass(s) {
+  if (s === 'approved' || s === 'verified' || s === 'dispatched') return 'done';
+  if (s === 'flagged' || s === 'rejected') return 'flagged';
+  if (s === 'processing') return 'active';
+  return '';
+}
+
+function fakeHash() {
+  return '0x' + Array.from({length:16}, () => Math.floor(Math.random()*16).toString(16)).join('');
+}
+
+function fakeBlock() {
+  return (4821000 + Math.floor(Math.random()*9999)).toLocaleString('en-IN');
+}
+
+function formatDateTime(iso) {
+  const d = new Date(iso);
+  return d.toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' })
+       + ' · ' + d.toLocaleTimeString('en-IN', { hour:'2-digit', minute:'2-digit' });
+}
+
+function renderResult(app) {
+  const color = STATUS_COLORS[app.status] || '#888';
+  const timeline = (app.timeline || []).map(t => `
+    <div class="tl-item">
+      <div class="tl-dot ${dotClass(t.status)}"></div>
+      <div class="tl-status">${STATUS_LABELS[t.status] || t.status}</div>
+      <div class="tl-note">${t.note}</div>
+      <div class="tl-time">${formatDateTime(t.ts)}</div>
+    </div>`).join('');
+
+  const confColor = app.confidence >= 90 ? '#10b981' : app.confidence >= 70 ? '#f59e0b' : '#ef4444';
+
+  document.getElementById('result-content').innerHTML = `
+    <div class="app-result-card">
+      <div class="result-header">
+        <div>
+          <h3>${app.name}</h3>
+          <div class="app-id-tag">${app.id}</div>
+          <div style="font-size:12px;margin-top:4px;opacity:0.8;">
+            ${app.service} &nbsp;·&nbsp; ${app.district}
+          </div>
+        </div>
+        <span class="status-badge-lg" style="border-color:${color}40;background:${color}22;color:#fff;">
+          ${STATUS_LABELS[app.status] || app.status}
+        </span>
+      </div>
+
+      <div class="result-body">
+        <div class="result-meta">
+          <div class="meta-item">
+            <div class="mi-label">Submitted</div>
+            <div class="mi-val">${formatDateTime(app.submittedAt)}</div>
+          </div>
+          <div class="meta-item">
+            <div class="mi-label">AI Confidence</div>
+            <div class="mi-val" style="color:${confColor}">${app.confidence}%</div>
+          </div>
+          <div class="meta-item">
+            <div class="mi-label">Expected Delivery</div>
+            <div class="mi-val">${app.status === 'approved' ? '5–7 working days' : 'Pending review'}</div>
+          </div>
+        </div>
+
+        <div class="section-title">📅 Application Timeline</div>
+        <div class="timeline">${timeline}</div>
+
+        <div class="blockchain-proof">
+          <div class="bp-title">⛓ Blockchain Verification Proof</div>
+          <div class="bp-row">
+            <span class="bp-key">Document Hash</span>
+            <span class="bp-val purple">${fakeHash()}</span>
+          </div>
+          <div class="bp-row">
+            <span class="bp-key">Block Number</span>
+            <span class="bp-val green">#${fakeBlock()}</span>
+          </div>
+          <div class="bp-row">
+            <span class="bp-key">Network</span>
+            <span class="bp-val">Ethereum Testnet (Sepolia)</span>
+          </div>
+          <div class="bp-row">
+            <span class="bp-key">Encryption</span>
+            <span class="bp-val green">AES-256-GCM ✓</span>
+          </div>
+          <div class="bp-row">
+            <span class="bp-key">IPFS CID</span>
+            <span class="bp-val purple">Qm${Math.random().toString(36).slice(2,12).toUpperCase()}…</span>
+          </div>
+          <div class="bp-row">
+            <span class="bp-key">Raspberry Pi Node</span>
+            <span class="bp-val green">192.168.1.42 — Online ●</span>
+          </div>
+        </div>
+      </div>
+    </div>`;
+
+  document.getElementById('result-area').classList.add('visible');
+  document.getElementById('recent-section').style.display = 'none';
+}
+
+function renderNotFound(query) {
+  document.getElementById('result-content').innerHTML = `
+    <div class="not-found">
+      <div class="nf-icon">🔍</div>
+      <strong>No application found</strong>
+      <span>We couldn't find an application matching "<em>${query}</em>"</span>
+      <div style="margin-top:16px;">
+        <a href="citizen.html" style="color:var(--teal);font-weight:600;">Submit a new application →</a>
+      </div>
+    </div>`;
+  document.getElementById('result-area').classList.add('visible');
+}
+
+function renderRecentList() {
+  const all = PramaanDB.getAll();
+  const list = document.getElementById('recent-list');
+  const none = document.getElementById('no-recent');
+  if (!all.length) { list.style.display='none'; none.style.display='block'; return; }
+  list.innerHTML = all.slice(0,8).map(a => `
+    <div class="recent-item" data-id="${a.id}">
+      <div class="ri-left">
+        <h4>${a.name}</h4>
+        <span>${a.service} &nbsp;·&nbsp; ${a.district} &nbsp;·&nbsp; ${formatDateTime(a.submittedAt)}</span>
+      </div>
+      <div class="ri-right">
+        <div class="ri-id">${a.id}</div>
+        <div style="margin-top:4px;">${a.status === 'approved' ? '<span class="tag-green">Approved</span>' : a.status === 'flagged' ? '<span class="tag-red">Flagged</span>' : '<span class="tag-amber">Pending</span>'}</div>
+      </div>
+    </div>`).join('');
+
+  list.querySelectorAll('.recent-item').forEach(el => {
+    el.addEventListener('click', () => {
+      const app = PramaanDB.findById(el.dataset.id);
+      if (app) renderResult(app);
+    });
+  });
+}
+
+// Search handlers
+function doSearchById() {
+  const val = document.getElementById('input-appid').value.trim().toUpperCase();
+  if (!val) return;
+  const app = PramaanDB.findById(val);
+  app ? renderResult(app) : renderNotFound(val);
+}
+function doSearchByMobile() {
+  const val = document.getElementById('input-mobile').value.trim();
+  if (!val) return;
+  const apps = PramaanDB.findByMobile(val);
+  apps.length ? renderResult(apps[0]) : renderNotFound(val);
+}
+
+document.getElementById('btn-search-id').addEventListener('click', doSearchById);
+document.getElementById('btn-search-mobile').addEventListener('click', doSearchByMobile);
+document.getElementById('input-appid').addEventListener('keydown', e => { if(e.key==='Enter') doSearchById(); });
+document.getElementById('input-mobile').addEventListener('keydown', e => { if(e.key==='Enter') doSearchByMobile(); });
+
+// Search tabs
+document.querySelectorAll('.search-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.search-tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.search-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('stab-' + btn.dataset.stab).classList.add('active');
+  });
+});
+
+// Auto-search from URL param
+document.addEventListener('DOMContentLoaded', () => {
+  renderRecentList();
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+  if (id) {
+    document.getElementById('input-appid').value = id;
+    doSearchById();
+  }
+});
+</script>
+</body>
+</html>

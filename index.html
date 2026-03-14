@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>e-Services | Apuni Sarkar — Government of Uttarakhand</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/login.css">
+<link rel="stylesheet" href="css/toasts.css">
+</head>
+<body>
+
+<div class="access-bar">
+  <div><a href="#">Skip to main content</a><a href="#">Sitemap</a></div>
+  <div class="access-right">
+    <div class="lang-toggle"><span>English</span><div class="toggle-switch"></div><span>हिंदी</span></div>
+    <div class="font-btns"><button>A-</button><button class="active">A</button><button>A+</button></div>
+    <span class="access-icon" title="Accessibility options">♿</span>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="logo-group">
+    <svg class="ashoka-emblem" viewBox="0 0 56 56" fill="none">
+      <circle cx="28" cy="28" r="27" fill="#f5f0e8" stroke="#c9a84c" stroke-width="1"/>
+      <circle cx="28" cy="28" r="20" fill="none" stroke="#1a7a6e" stroke-width="0.8" stroke-dasharray="2 1.5"/>
+      <text x="28" y="33" font-size="22" text-anchor="middle" fill="#8b4513">🏛</text>
+    </svg>
+    <div class="logo-divider"></div>
+    <div class="eservices-logo">
+      <div class="brand-top"><div class="diamond"></div><span class="e-text">e-Services</span></div>
+      <span class="sub-text">Apuni Sarkar</span>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="amrit-badge">
+      <div class="badge-num" style="color:#e05a1e;font-style:italic;font-size:22px;">75</div>
+      <div class="badge-text" style="color:#138808;font-size:10px;">आज़ादी का<br>अमृत महोत्सव</div>
+    </div>
+    <div class="tricolor-flag">
+      <span style="height:5px;background:#FF9933;display:block;"></span>
+      <span style="height:5px;background:#fff;border:1px solid #eee;display:block;"></span>
+      <span style="height:5px;background:#138808;display:block;"></span>
+    </div>
+    <div style="font-size:11px;color:#555;text-align:right;padding:4px 8px;border:1px solid #e0e0e0;border-radius:4px;">
+      <div style="font-weight:700;color:#1a7a6e;">🔒 NIC Secured</div>
+      <div>National Informatics Centre</div>
+    </div>
+  </div>
+</header>
+
+<nav class="main-nav">
+  <ul>
+    <li><a href="index.html" class="active"><span class="nav-icon">🏠</span> Home</a></li>
+    <li><a href="citizen.html"><span class="nav-icon">📄</span> Apply for Service</a></li>
+    <li><a href="tracking.html"><span class="nav-icon">📍</span> Track Application</a></li>
+    <li><a href="officer.html"><span class="nav-icon">⚙</span> Officer Dashboard</a></li>
+    <li><a href="analytics.html"><span class="nav-icon">📊</span> Analytics</a></li>
+  </ul>
+</nav>
+
+<div class="login-body page-body">
+
+  <section class="hero-section">
+    <svg class="mountains" viewBox="0 0 900 280" preserveAspectRatio="xMidYMax slice">
+      <polygon points="0,280 150,120 300,200 450,80 600,160 750,60 900,140 900,280" fill="rgba(26,122,110,0.12)"/>
+      <polygon points="0,280 100,160 250,220 400,100 550,180 700,90 900,160 900,280" fill="rgba(26,122,110,0.09)"/>
+      <polygon points="0,280 200,200 400,240 600,200 800,230 900,210 900,280" fill="rgba(26,122,110,0.06)"/>
+    </svg>
+    <div class="peacock-wrap">
+      <svg width="70" height="90" viewBox="0 0 70 90">
+        <ellipse cx="35" cy="70" rx="12" ry="18" fill="#1a7a6e" opacity="0.5"/>
+        <circle cx="35" cy="38" r="14" fill="#1a7a6e" opacity="0.4"/>
+        <circle cx="35" cy="28" r="6" fill="#0d4f45" opacity="0.6"/>
+        <ellipse cx="22" cy="50" rx="10" ry="22" fill="#1a9e8c" opacity="0.35" transform="rotate(-20 22 50)"/>
+        <ellipse cx="48" cy="50" rx="10" ry="22" fill="#1a9e8c" opacity="0.35" transform="rotate(20 48 50)"/>
+        <ellipse cx="35" cy="18" rx="4" ry="10" fill="#1a9e8c" opacity="0.4"/>
+      </svg>
+    </div>
+    <div class="hero-content">
+      <h1>Apuni Sarkar</h1>
+      <p class="tagline">Our Government at Your Door</p>
+      <h2>Essential Online Services for the Citizens of Uttarakhand</h2>
+    </div>
+    <div class="service-grid">
+      <button class="svc-btn orange" onclick="location.href='citizen.html'">
+        <span class="svc-icon">📋</span><span>Verify Certificate</span>
+      </button>
+      <button class="svc-btn blue" onclick="location.href='tracking.html'">
+        <span class="svc-icon">📍</span><span>Know Application Status</span>
+      </button>
+      <button class="svc-btn green" onclick="location.href='citizen.html'">
+        <span class="svc-icon">⬇</span><span>Download Certificates</span>
+      </button>
+      <button class="svc-btn amber" onclick="location.href='analytics.html'">
+        <span class="svc-icon">📊</span><span>Live Analytics</span>
+      </button>
+    </div>
+    <div class="stats-row" style="margin-top:24px;">
+      <span class="stat-pill">🔌 RPi + AES-256 Encryption</span>
+      <span class="stat-pill">⛓ Blockchain File Storage</span>
+      <span class="stat-pill">🔍 PramaanAI Verification</span>
+    </div>
+  </section>
+
+  <section class="login-section">
+    <div class="login-tabs">
+      <button class="tab-btn" data-tab="citizen">CITIZEN</button>
+      <button class="tab-btn" data-tab="csc">CSC</button>
+      <button class="tab-btn" data-tab="edc">EDC</button>
+      <button class="tab-btn active" data-tab="officer">OFFICER</button>
+    </div>
+
+    <div class="login-panel active" id="panel-officer">
+      <h3>Officer Login</h3>
+      <div class="form-group">
+        <label>User ID</label>
+        <input type="text" placeholder="Enter e-mail or mobile number">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <div class="pw-wrap">
+          <input type="password" placeholder="Enter password">
+          <span class="pw-eye">👁</span>
+        </div>
+      </div>
+      <div class="captcha-row">
+        <div class="captcha-img">kpa4sg</div>
+        <input type="text" placeholder="Captcha">
+        <button class="refresh-btn">↻ Refresh</button>
+      </div>
+      <button class="btn-signin">Sign In</button>
+      <button class="btn-parichay">
+        <span class="p-logo">P</span>Pehchaan &nbsp; Jan Parichay
+      </button>
+      <div class="login-links">
+        <a href="#">Forgot Password?</a><a href="#">Register as Officer</a>
+      </div>
+    </div>
+
+    <div class="login-panel" id="panel-citizen">
+      <h3>Citizen Login</h3>
+      <div class="form-group">
+        <label>Mobile Number / Aadhaar</label>
+        <input type="text" placeholder="Enter mobile number">
+      </div>
+      <div class="form-group">
+        <label>Password / OTP</label>
+        <div class="pw-wrap">
+          <input type="password" placeholder="Enter password or OTP">
+          <span class="pw-eye">👁</span>
+        </div>
+      </div>
+      <div class="captcha-row">
+        <div class="captcha-img">Xm7wR2</div>
+        <input type="text" placeholder="Captcha">
+        <button class="refresh-btn">↻ Refresh</button>
+      </div>
+      <button class="btn-signin" onclick="location.href='citizen.html'">Sign In</button>
+      <button class="btn-parichay"><span class="p-logo">P</span> Pehchaan &nbsp; Jan Parichay</button>
+      <div class="login-links">
+        <a href="citizen.html">New Application →</a><a href="#">Register</a>
+      </div>
+    </div>
+
+    <div class="login-panel" id="panel-csc">
+      <h3>CSC Login</h3>
+      <p style="font-size:13px;color:#666;margin-bottom:16px;">Common Service Centre operators login here to submit applications on behalf of citizens.</p>
+      <div class="form-group"><label>CSC ID</label><input type="text" placeholder="Enter your CSC operator ID"></div>
+      <div class="form-group"><label>Password</label><div class="pw-wrap"><input type="password" placeholder="Enter password"><span class="pw-eye">👁</span></div></div>
+      <button class="btn-signin">Sign In</button>
+    </div>
+
+    <div class="login-panel" id="panel-edc">
+      <h3>EDC Login</h3>
+      <p style="font-size:13px;color:#666;margin-bottom:16px;">E-District Centre operator login for district-level service delivery.</p>
+      <div class="form-group"><label>EDC User ID</label><input type="text" placeholder="Enter EDC user ID"></div>
+      <div class="form-group"><label>Password</label><div class="pw-wrap"><input type="password" placeholder="Enter password"><span class="pw-eye">👁</span></div></div>
+      <button class="btn-signin">Sign In</button>
+    </div>
+
+    <div style="margin-top:20px;padding-top:16px;border-top:1px solid #e5e7eb;font-size:11px;color:#888;text-align:center;line-height:1.6;">
+      By signing in you agree to the
+      <a href="#" style="color:var(--teal);">Terms of Service</a> and
+      <a href="#" style="color:var(--teal);">Privacy Policy</a>.<br>
+      For assistance: <strong>1800-XXX-XXXX</strong> (Toll-free, 9AM–6PM)
+    </div>
+  </section>
+</div>
+
+<footer class="site-footer">
+  <div>© 2024 Government of Uttarakhand &nbsp;|&nbsp; <a href="#">NIC — National Informatics Centre</a> &nbsp;|&nbsp; Powered by e-Services Platform &nbsp;|&nbsp; Version 2.4.1</div>
+  <div class="footer-links">
+    <a href="#">Privacy Policy</a><a href="#">Terms of Use</a>
+    <a href="tracking.html">Track Application</a><a href="analytics.html">Analytics</a>
+  </div>
+  <div class="nic-badge">🔒 NIC + ⛓ Blockchain Secured</div>
+</footer>
+
+<div class="pi-badge">
+  <span class="pi-dot"></span><strong>Raspberry Pi Kiosk</strong> — Connected
+  <span class="pi-sub">RPi 4B | AES-256 + IPFS | 192.168.1.42</span>
+</div>
+<div class="demo-watermark">DEMO &nbsp; DEMO &nbsp; DEMO &nbsp; DEMO</div>
+<div id="toast-container"></div>
+
+<script src="js/main.js"></script>
+<script src="js/db.js"></script>
+<script src="js/notifications.js"></script>
+</body>
+</html>

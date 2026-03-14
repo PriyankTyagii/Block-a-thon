@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Officer Dashboard — Apuni Sarkar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/officer.css">
+<link rel="stylesheet" href="css/toasts.css">
+</head>
+<body>
+
+<div class="access-bar">
+  <div><a href="index.html">← Home</a><a href="#">Sitemap</a></div>
+  <div class="access-right">
+    <div class="lang-toggle"><span>English</span><div class="toggle-switch"></div><span>हिंदी</span></div>
+    <div class="font-btns"><button>A-</button><button class="active">A</button><button>A+</button></div>
+    <span class="access-icon">♿</span>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="logo-group">
+    <svg class="ashoka-emblem" viewBox="0 0 56 56"><circle cx="28" cy="28" r="27" fill="#f5f0e8" stroke="#c9a84c" stroke-width="1"/><circle cx="28" cy="28" r="20" fill="none" stroke="#1a7a6e" stroke-width="0.8" stroke-dasharray="2 1.5"/><text x="28" y="33" font-size="22" text-anchor="middle" fill="#8b4513">🏛</text></svg>
+    <div class="logo-divider"></div>
+    <div class="eservices-logo">
+      <div class="brand-top"><div class="diamond"></div><span class="e-text">e-Services</span></div>
+      <span class="sub-text">Apuni Sarkar</span>
+    </div>
+  </div>
+  <div class="header-right">
+    <span style="font-size:13px;color:#555;">Shri R.K. Sharma &nbsp;|&nbsp; District Officer, Dehradun</span>
+    <a href="index.html" style="font-size:12px;color:var(--teal);border:1px solid var(--teal);padding:5px 12px;border-radius:4px;">Sign Out</a>
+  </div>
+</header>
+
+<nav class="main-nav">
+  <ul>
+    <li><a href="index.html"><span class="nav-icon">🏠</span> Home</a></li>
+    <li><a href="officer.html" class="active"><span class="nav-icon">⚙</span> Dashboard</a></li>
+    <li><a href="citizen.html"><span class="nav-icon">📄</span> Citizen Portal</a></li>
+    <li><a href="analytics.html"><span class="nav-icon">📊</span> Analytics</a></li>
+
+  </ul>
+</nav>
+
+<div class="page-body">
+<div class="officer-wrap">
+
+  <div class="officer-topbar">
+    <div>
+      <h2>Officer Verification Dashboard</h2>
+      <div style="font-size:12px;color:#888;margin-top:2px;">Last refreshed: just now &nbsp;|&nbsp; PramaanAI Engine: <span style="color:#10b981;font-weight:600;">Active</span></div>
+    </div>
+    <div class="officer-info">
+      <div class="officer-avatar">RK</div>
+      <div>
+        <div style="font-weight:700;font-size:13.5px;">Shri R.K. Sharma</div>
+        <div style="font-size:12px;color:#888;">District Officer, Dehradun</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPI cards -->
+  <div class="kpi-row">
+    <div class="kpi-card k-pending">
+      <div class="kpi-label">Pending Review</div>
+      <div class="kpi-num">47</div>
+      <div class="kpi-trend up">↑ 3 new today</div>
+    </div>
+    <div class="kpi-card k-verified">
+      <div class="kpi-label">Verified Today</div>
+      <div class="kpi-num">128</div>
+      <div class="kpi-trend up">↑ 14% vs yesterday</div>
+    </div>
+    <div class="kpi-card k-flagged">
+      <div class="kpi-label">Flagged / Issues</div>
+      <div class="kpi-num">12</div>
+      <div class="kpi-trend down">↓ 2 resolved today</div>
+    </div>
+    <div class="kpi-card k-time">
+      <div class="kpi-label">Avg. Processing Time</div>
+      <div class="kpi-num">23s</div>
+      <div class="kpi-trend up">↓ 8s faster than last week</div>
+    </div>
+  </div>
+
+  <div class="dashboard-layout">
+
+    <!-- Application queue -->
+    <div class="queue-section">
+      <h3>📋 Application Queue</h3>
+      <div class="queue-filters">
+        <button class="filter-btn active">All (47)</button>
+        <button class="filter-btn">Pending Review (6)</button>
+        <button class="filter-btn">Auto-Approved (29)</button>
+        <button class="filter-btn">Flagged (12)</button>
+        <button class="filter-btn">Today's</button>
+      </div>
+
+      <table class="app-table">
+        <thead>
+          <tr>
+            <th>Applicant</th>
+            <th>District</th>
+            <th>Service</th>
+            <th>Documents</th>
+            <th>AI Confidence</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="app-tbody">
+          <!-- Populated by officer.js -->
+        </tbody>
+      </table>
+
+      <div style="padding:12px 0;font-size:12px;color:#888;text-align:right;">
+        Showing 6 of 47 applications &nbsp;|&nbsp;
+        <a href="#" style="color:var(--teal);">View all →</a>
+      </div>
+    </div>
+
+    <!-- Detail panel -->
+    <div class="detail-panel" id="detail-panel">
+      <div class="panel-header">
+        <div>
+          <h4 id="d-name">—</h4>
+          <div style="font-size:12px;color:#888;margin-top:2px;" id="d-id">—</div>
+        </div>
+        <button class="close-btn" id="close-panel">✕</button>
+      </div>
+
+      <!-- Doc thumbnails -->
+      <div class="doc-thumbs" id="d-thumbs"></div>
+
+      <!-- Extracted fields table -->
+      <div style="font-size:12px;font-weight:700;color:#0d4f45;margin-bottom:6px;">🔍 Extracted Fields</div>
+      <table class="fields-table">
+        <thead><tr><th>Field</th><th>Extracted Value</th><th>Conf.</th><th>Status</th></tr></thead>
+        <tbody id="d-fields"></tbody>
+      </table>
+
+      <!-- Validation graph -->
+      <div class="validation-graph">
+        <h5>🔗 Cross-Document Validation</h5>
+        <div id="d-graph"></div>
+      </div>
+
+      <!-- Compression stats -->
+      <div class="compression-stat">
+        <div style="font-size:12px;font-weight:700;color:#0d4f45;margin-bottom:6px;">⚡ Upload Optimization</div>
+        <div class="cs-row"><span>Original size:</span><span id="d-orig">—</span></div>
+        <div class="cs-row"><span>After compression:</span><strong id="d-opt">—</strong></div>
+        <div class="cs-row"><span>Bandwidth saved:</span><strong style="color:#10b981;" id="d-saved">—</strong></div>
+      </div>
+
+      <!-- Actions -->
+      <div class="action-btns">
+        <button class="btn-approve" onclick="this.textContent='✓ Approved';this.style.background='#059669'">Approve</button>
+        <button class="btn-clarify" onclick="this.textContent='↻ Sent'">Request Info</button>
+        <button class="btn-reject"  onclick="this.textContent='✗ Rejected';this.style.background='#dc2626'">Reject</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<footer class="site-footer">
+  <div>© 2024 Government of Uttarakhand &nbsp;|&nbsp; NIC — National Informatics Centre &nbsp;|&nbsp; Version 2.4.1</div>
+  <div class="footer-links"><a href="analytics.html">Analytics</a><a href="index.html">Home</a></div>
+  <div class="nic-badge">🔒 NIC Secured</div>
+</footer>
+
+<div class="pi-badge">
+  <span class="pi-dot"></span><strong>Raspberry Pi Kiosk</strong> — Connected
+  <span class="pi-sub">RPi 4B | 7" Touchscreen | 192.168.1.42</span>
+</div>
+<div class="demo-watermark">DEMO &nbsp; DEMO &nbsp; DEMO &nbsp; DEMO</div>
+
+<div id="toast-container"></div>
+<script src="js/main.js"></script>
+<script src="js/db.js"></script>
+<script src="js/notifications.js"></script>
+<script src="js/officer.js"></script>
+</body>
+</html>

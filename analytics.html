@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pipeline Analytics — Apuni Sarkar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/analytics.css">
+<link rel="stylesheet" href="css/toasts.css">
+</head>
+<body>
+
+<div class="access-bar">
+  <div><a href="index.html">← Home</a><a href="#">Sitemap</a></div>
+  <div class="access-right">
+    <div class="lang-toggle"><span>English</span><div class="toggle-switch"></div><span>हिंदी</span></div>
+    <div class="font-btns"><button>A-</button><button class="active">A</button><button>A+</button></div>
+    <span class="access-icon">♿</span>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="logo-group">
+    <svg class="ashoka-emblem" viewBox="0 0 56 56"><circle cx="28" cy="28" r="27" fill="#f5f0e8" stroke="#c9a84c" stroke-width="1"/><circle cx="28" cy="28" r="20" fill="none" stroke="#1a7a6e" stroke-width="0.8" stroke-dasharray="2 1.5"/><text x="28" y="33" font-size="22" text-anchor="middle" fill="#8b4513">🏛</text></svg>
+    <div class="logo-divider"></div>
+    <div class="eservices-logo">
+      <div class="brand-top"><div class="diamond"></div><span class="e-text">e-Services</span></div>
+      <span class="sub-text">Apuni Sarkar</span>
+    </div>
+  </div>
+  <div class="header-right" style="font-size:13px;color:#555;">
+    <span style="display:flex;align-items:center;gap:6px;">
+      <span style="width:8px;height:8px;background:#10b981;border-radius:50%;display:inline-block;animation:pulse-dot 1.5s infinite;"></span>
+      Live Pipeline Analytics
+    </span>
+  </div>
+</header>
+
+<nav class="main-nav">
+  <ul>
+    <li><a href="index.html"><span class="nav-icon">🏠</span> Home</a></li>
+    <li><a href="officer.html"><span class="nav-icon">⚙</span> Officer Dashboard</a></li>
+    <li><a href="citizen.html"><span class="nav-icon">📄</span> Citizen Portal</a></li>
+    <li><a href="analytics.html" class="active"><span class="nav-icon">📊</span> Analytics</a></li>
+  </ul>
+</nav>
+
+<div class="page-body">
+<div class="analytics-wrap">
+
+  <h2>📊 Real-time Pipeline Analytics</h2>
+  <p class="page-sub">Live performance metrics of the PramaanAI document processing engine — Uttarakhand e-Services Platform</p>
+
+  <div class="summary-row" style="margin-bottom:24px;">
+    <div class="summary-card green">
+      <div class="s-num live-counter" id="counter-docs">0</div>
+      <div class="s-label">Total Documents Processed</div>
+    </div>
+    <div class="summary-card teal">
+      <div class="s-num live-counter" id="counter-saved">0<span style="font-size:14px;font-weight:600;"> MB</span></div>
+      <div class="s-label">Bandwidth Saved</div>
+    </div>
+    <div class="summary-card amber">
+      <div class="s-num live-counter" id="counter-today">0</div>
+      <div class="s-label">Documents Verified Today</div>
+    </div>
+  </div>
+
+  <!-- 4 charts -->
+  <div class="charts-grid">
+
+    <!-- Bar chart: weekly documents -->
+    <div class="chart-card">
+      <h4>📅 Documents Processed This Week</h4>
+      <div class="bar-chart" id="bar-chart">
+        <!-- Built by analytics.js -->
+      </div>
+    </div>
+
+    <!-- Donut: verification outcomes -->
+    <div class="chart-card">
+      <h4>✅ Verification Outcomes</h4>
+      <div class="donut-wrap">
+        <svg id="donut-svg" class="donut-svg" viewBox="0 0 140 140"></svg>
+        <div class="donut-legend" id="donut-legend"></div>
+      </div>
+    </div>
+
+    <!-- Line chart: compression over time -->
+    <div class="chart-card">
+      <h4>⚡ Avg. File Size After Compression (MB)</h4>
+      <div class="line-chart-wrap">
+        <svg id="line-svg"></svg>
+      </div>
+      <div style="font-size:11px;color:#888;margin-top:8px;">
+        Trend: avg upload size reduced from <strong>4.8MB → 1.4MB</strong> over 12 months
+      </div>
+    </div>
+
+    <!-- Horizontal bar: OCR confidence by doc type -->
+    <div class="chart-card">
+      <h4>🔍 OCR Confidence by Document Type</h4>
+      <div class="hbar-list" id="hbar-list">
+        <!-- Built by analytics.js -->
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Activity feed + summary -->
+  <div style="display:grid;grid-template-columns:1fr 360px;gap:20px;align-items:start;">
+
+    <div class="activity-section">
+      <h4>
+        <span class="live-dot"></span>
+        Live Activity Feed
+        <span style="font-size:11px;color:#888;font-weight:400;margin-left:8px;">Updates every ~2s</span>
+      </h4>
+      <div class="feed-list" id="feed-list">
+        <!-- Populated by analytics.js -->
+      </div>
+    </div>
+
+    <!-- Pipeline stage timing -->
+    <div class="chart-card" style="margin:0;">
+      <h4>⏱ Pipeline Stage Timings</h4>
+      <div style="display:flex;flex-direction:column;gap:14px;margin-top:4px;">
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;">
+            <span>Upload + Compress</span><strong>0.8s</strong>
+          </div>
+          <div style="height:8px;background:#e5e7eb;border-radius:4px;overflow:hidden;">
+            <div style="height:100%;width:18%;background:#1a7a6e;border-radius:4px;transition:width 1s;"></div>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;">
+            <span>Deskew + Denoise</span><strong>1.1s</strong>
+          </div>
+          <div style="height:8px;background:#e5e7eb;border-radius:4px;overflow:hidden;">
+            <div style="height:100%;width:25%;background:#5eb5a8;border-radius:4px;"></div>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;">
+            <span>OCR Field Extraction</span><strong>12.4s</strong>
+          </div>
+          <div style="height:8px;background:#e5e7eb;border-radius:4px;overflow:hidden;">
+            <div style="height:100%;width:58%;background:#f59e0b;border-radius:4px;"></div>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;">
+            <span>Cross-Validation</span><strong>3.2s</strong>
+          </div>
+          <div style="height:8px;background:#e5e7eb;border-radius:4px;overflow:hidden;">
+            <div style="height:100%;width:38%;background:#8ecec8;border-radius:4px;"></div>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;">
+            <span>Report Generation</span><strong>0.5s</strong>
+          </div>
+          <div style="height:8px;background:#e5e7eb;border-radius:4px;overflow:hidden;">
+            <div style="height:100%;width:11%;background:#d1fae5;border-radius:4px;border:1px solid #10b981;"></div>
+          </div>
+        </div>
+        <div style="border-top:1px solid #e5e7eb;padding-top:10px;font-size:12.5px;color:#0d4f45;font-weight:700;">
+          Total avg: ~18s &nbsp; <span style="color:#888;font-weight:400;">(manual: ~6 min)</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+</div>
+
+<footer class="site-footer">
+  <div>© 2024 Government of Uttarakhand &nbsp;|&nbsp; NIC — National Informatics Centre &nbsp;|&nbsp; Version 2.4.1</div>
+  <div class="footer-links"><a href="officer.html">Dashboard</a><a href="index.html">Home</a></div>
+  <div class="nic-badge">🔒 NIC Secured</div>
+</footer>
+
+<div class="pi-badge">
+  <span class="pi-dot"></span><strong>Raspberry Pi Kiosk</strong> — Connected
+  <span class="pi-sub">RPi 4B | 7" Touchscreen | 192.168.1.42</span>
+</div>
+<div class="demo-watermark">DEMO &nbsp; DEMO &nbsp; DEMO &nbsp; DEMO</div>
+
+<div id="toast-container"></div>
+<script src="js/main.js"></script>
+<script src="js/db.js"></script>
+<script src="js/notifications.js"></script>
+<script src="js/analytics.js"></script>
+</body>
+</html>

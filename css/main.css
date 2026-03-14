@@ -1,0 +1,206 @@
+/* ── Variables ─────────────────────────────────── */
+:root {
+  --teal:        #1a7a6e;
+  --teal-dark:   #155f55;
+  --teal-nav:    #1d6b5e;
+  --teal-light:  #e6f4f1;
+  --teal-bg:     #d0ece7;
+  --orange:      #e05a1e;
+  --blue:        #1e4db7;
+  --green:       #1a7a3c;
+  --amber:       #d97706;
+  --text:        #1a1a1a;
+  --text-muted:  #555;
+  --border:      #d0d5dd;
+  --white:       #ffffff;
+  --shadow:      0 2px 12px rgba(0,0,0,0.10);
+  --radius:      6px;
+  --font:        'Noto Sans', 'Segoe UI', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font);
+  color: var(--text);
+  background: #f4f6f8;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* ── Accessibility bar ──────────────────────────── */
+.access-bar {
+  background: #f0f0f0;
+  border-bottom: 1px solid #ddd;
+  padding: 5px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #444;
+}
+.access-bar a { color: var(--teal); margin-right: 16px; }
+.access-bar a:hover { text-decoration: underline; }
+.access-right { display: flex; align-items: center; gap: 10px; }
+.lang-toggle {
+  display: flex; align-items: center; gap: 6px;
+  background: #fff; border: 1px solid #ccc;
+  border-radius: 20px; padding: 2px 8px; font-size: 12px;
+}
+.toggle-switch {
+  width: 32px; height: 16px; background: var(--teal);
+  border-radius: 8px; position: relative; cursor: pointer;
+}
+.toggle-switch::after {
+  content: ''; position: absolute; top: 2px; left: 2px;
+  width: 12px; height: 12px; background: #fff;
+  border-radius: 50%; transition: transform 0.2s;
+}
+.font-btns { display: flex; gap: 4px; }
+.font-btns button {
+  border: 1px solid #ccc; background: #fff; cursor: pointer;
+  padding: 1px 7px; border-radius: 3px; font-size: 11px; color: #444;
+}
+.font-btns button.active { background: var(--teal); color: #fff; border-color: var(--teal); }
+.access-icon { font-size: 18px; color: var(--teal); cursor: pointer; }
+
+/* ── Site header ────────────────────────────────── */
+.site-header {
+  background: var(--white);
+  border-bottom: 1px solid #e0e0e0;
+  padding: 10px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo-group { display: flex; align-items: center; gap: 12px; }
+.ashoka-emblem { width: 56px; height: 56px; }
+.logo-divider { width: 1px; height: 48px; background: #ccc; }
+.eservices-logo {
+  display: flex; flex-direction: column; align-items: flex-start;
+}
+.eservices-logo .brand-top {
+  display: flex; align-items: center; gap: 6px;
+}
+.eservices-logo .diamond {
+  width: 22px; height: 22px; background: linear-gradient(135deg, #e05a1e 50%, #1a7a6e 50%);
+  transform: rotate(0deg); border-radius: 3px;
+  display: flex; align-items: center; justify-content: center;
+}
+.eservices-logo .e-text {
+  font-size: 22px; font-weight: 700; color: var(--teal); letter-spacing: -0.5px;
+}
+.eservices-logo .sub-text {
+  font-size: 12px; color: #555; margin-top: 1px; letter-spacing: 0.5px;
+}
+.header-right { display: flex; align-items: center; gap: 16px; }
+.amrit-badge { text-align: right; }
+.amrit-badge .badge-num {
+  font-size: 28px; font-weight: 900; color: #e05a1e;
+  line-height: 1; font-style: italic;
+}
+.amrit-badge .badge-text { font-size: 10px; color: #555; line-height: 1.3; }
+.tricolor-flag { display: flex; flex-direction: column; width: 36px; }
+.tricolor-flag span { height: 4px; }
+.tricolor-flag .saffron { background: #FF9933; }
+.tricolor-flag .white-stripe { background: #fff; border: 1px solid #ddd; }
+.tricolor-flag .green-stripe { background: #138808; }
+
+/* ── Navigation ─────────────────────────────────── */
+.main-nav {
+  background: var(--teal-nav);
+  padding: 0 16px;
+}
+.main-nav ul {
+  list-style: none; display: flex; align-items: center;
+  gap: 0; overflow-x: auto;
+}
+.main-nav ul::-webkit-scrollbar { display: none; }
+.main-nav li a {
+  display: flex; align-items: center; gap: 6px;
+  padding: 12px 14px; color: rgba(255,255,255,0.92);
+  font-size: 13px; white-space: nowrap;
+  transition: background 0.15s;
+}
+.main-nav li a:hover,
+.main-nav li a.active { background: rgba(255,255,255,0.15); color: #fff; }
+.main-nav li a .nav-icon { font-size: 14px; }
+
+/* ── Page content wrapper ───────────────────────── */
+.page-body { flex: 1; }
+
+/* ── Footer ─────────────────────────────────────── */
+.site-footer {
+  background: var(--teal-dark);
+  color: rgba(255,255,255,0.75);
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11.5px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.site-footer a { color: rgba(255,255,255,0.85); }
+.site-footer a:hover { color: #fff; }
+.footer-links { display: flex; gap: 16px; }
+.nic-badge {
+  display: flex; align-items: center; gap: 5px;
+  background: rgba(255,255,255,0.12); border-radius: 4px;
+  padding: 3px 8px; font-size: 11px; color: #fff;
+}
+
+/* ── Pi kiosk floating badge ────────────────────── */
+.pi-badge {
+  position: fixed; bottom: 20px; right: 20px;
+  background: #0d1117; color: #fff;
+  border-radius: 10px; padding: 8px 14px;
+  font-size: 11px; box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+  z-index: 9999; line-height: 1.5;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.pi-badge .pi-dot {
+  display: inline-block; width: 8px; height: 8px;
+  background: #22c55e; border-radius: 50%;
+  margin-right: 6px; animation: pulse-dot 1.5s ease-in-out infinite;
+}
+.pi-badge .pi-sub { color: rgba(255,255,255,0.5); font-size: 10px; display: block; }
+@keyframes pulse-dot {
+  0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
+  50% { box-shadow: 0 0 0 4px rgba(34,197,94,0); }
+}
+
+/* ── Demo watermark ─────────────────────────────── */
+.demo-watermark {
+  position: fixed; top: 38%; right: -52px;
+  font-size: 13px; font-weight: 700; color: rgba(0,0,0,0.06);
+  transform: rotate(-45deg); letter-spacing: 4px;
+  pointer-events: none; z-index: 0; text-transform: uppercase;
+}
+
+/* ── Utility ────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 8px; padding: 10px 20px; border: none; border-radius: var(--radius);
+  font-size: 14px; font-weight: 600; cursor: pointer;
+  transition: opacity 0.15s, transform 0.1s;
+}
+.btn:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+.btn-teal { background: var(--teal); color: #fff; }
+.btn-orange { background: var(--orange); color: #fff; }
+.btn-outline { background: #fff; color: var(--teal); border: 1.5px solid var(--teal); }
+
+.tag-green { background: #d1fae5; color: #065f46; padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+.tag-amber { background: #fef3c7; color: #92400e; padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+.tag-red   { background: #fee2e2; color: #991b1b; padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+.tag-blue  { background: #dbeafe; color: #1e40af; padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+
+@media (max-width: 768px) {
+  .access-bar { flex-wrap: wrap; gap: 6px; font-size: 11px; }
+  .site-header { flex-wrap: wrap; gap: 8px; }
+  .main-nav li a { padding: 10px 10px; font-size: 12px; }
+}
