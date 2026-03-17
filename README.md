@@ -39,6 +39,13 @@ After upload, district officers physically open each image, visually read fields
 
 ## Our Solution — PramaanAI
 
+## Rasberry-Pi Kiosk
+![WhatsApp Image 2026-03-15 at 12 09 49 PM](https://github.com/user-attachments/assets/ca44ae8c-bfa3-486a-a21c-e96150b66993)
+
+![WhatsApp Image 2026-03-15 at 12 09 49 PM (1)](https://github.com/user-attachments/assets/f74a5dd3-867b-402d-a3b5-9d49e6083d75)
+
+
+
 PramaanAI is a **5-stage intelligent document processing engine** integrated directly into the Apuni Sarkar citizen upload flow. It eliminates both bottlenecks simultaneously without changing anything for the citizen.
 
 | What we built | Impact |
